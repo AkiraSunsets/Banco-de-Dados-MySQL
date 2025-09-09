@@ -3,14 +3,14 @@ USE biblioteca;
 
 CREATE TABLE Livro (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-	TituloLivro VARCHAR(50) NOT NULL,
+	TituloLivro VARCHAR(255),
 	Descricao TEXT,
-	IBSN VARCHAR(20) UNIQUE 
+	ISBN VARCHAR(20) UNIQUE 
 );
 
 CREATE TABLE Categoria (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-	Nome VARCHAR(50) NOT NULL
+	NomeCategoria VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE LivroCategoria (
@@ -23,15 +23,16 @@ CREATE TABLE LivroCategoria (
 
 CREATE TABLE Usuario (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-    NomeUsuario VARCHAR(50) NOT NULL,
+    NomeUsuario VARCHAR(255),
     Email VARCHAR (50) UNIQUE,
     DataCadastro DATE,
+    NumeroIdentificacao VARCHAR(50),
     NivelAssociacao VARCHAR (50)
 );
 
 CREATE TABLE Autor (
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR (50) NOT NULL, 
+    Nome VARCHAR (255), 
     DataNascimento DATE,
     Biografia TEXT
 );
@@ -71,40 +72,131 @@ VALUES
 ('O diário de Anne Frank', 'Fugindo da perseguição ao povo judeu, Anne, seus pais e sua irmã, que já tinham se mudado para a Holanda, passam a morar em um esconderigo de uma família amiga. Ali ficam confinados por mais de dois anos, enfrentando muitas dificuldades, situações e coisas impresionantes, tudo isso detalhado em seu diário secreto.', '9783596511495'),
 ('O menino do pijama listrado', 'conta a história de Bruno, um menino alemão de oito anos que, durante a Segunda Guerra Mundial, se muda para perto de um campo de concentração devido ao trabalho do seu pai, um oficial nazista', '9780857533937');
 
-INSERT INTO Categoria(Nome)
+INSERT INTO Categoria(NomeCategoria)
 VALUES 
 ('Romance'),
 ('Comédia'),
 ('Drama'), 
 ('Ficção-Cientifica'),
-('Ação'),
+('Ficção-Autobiografica'),
 ('Poesia'),
-('Literatura Brasileira'),
+('Literatura Infantil'),
 ('Terror'),
 ('Fantasia'),
 ('Suspense');
 
-
-INSERT INTO Usuario (NomeUsuario, Email, DataCadastro, NivelAssociacao)
+INSERT INTO Usuario (NomeUsuario, Email, DataCadastro, NumeroIdentificacao, NivelAssociacao)
 VALUES
-('Ana Carolina', 'anacarola@exemplo.com', '20-01-2021', 'Estudante'),
-('Bruna Amanda', 'brunaamanda@exemplo.com', '21-02-2023', 'Professor'),
-('Carolina Almeida', 'carolinaalmeida@exemplo.com', 'Professor'),
-('Daniela Pereira', 'danipereira@exemplo.com', 'Estudante'),
-('Emilly Silva', 'emilysilva@exemplo.com', 'Professor'),
-('Felipe Oliveira', 'felipeoliveira.com', 'Professor'),
-('Giovanna Sanches', 'giovannasanches@exemplo.com', 'Estudante'),
-('Helena Oliveira', 'helenaoliveira@exemplo.com', 'Professor'),
-('Isabella Bertollo', 'isabellabertollo@exemplo.com', 'Professor'),
-('Julia Araújo', 'juliaaraujo@exemplo.com', 'Professor');
+('Ana Carolina', 'anacarolina@exemplo.com', '2021-01-20', '12342', 'Administrador'),
+('Bruna Amanda', 'brunaamanda@exemplo.com', '2023-02-21', '87421', 'UsuarioPadrao'),
+('Carolina Almeida', 'carolinaalmeida@exemplo.com', '2022-03-15', '65213', 'Administrador'),
+('Daniela Pereira', 'danipereira@exemplo.com', '2021-06-10', '98134', 'UsuarioPadrao'),
+('Emilly Silva', 'emilysilva@exemplo.com', '2022-08-05', '43215', 'Administrador'),
+('Felipe Oliveira', 'felipeoliveira@exemplo.com', '2021-11-12', '76529', 'UsuarioPadrao'),
+('Giovanna Sanches', 'giovannasanches@exemplo.com', '2023-01-08', '31487', 'UsuarioPadrao'),
+('Helena Oliveira', 'helenaoliveira@exemplo.com', '2022-04-18', '59284', 'UsuarioPadrao'),
+('Isabella Bertollo', 'isabellabertollo@exemplo.com', '2023-05-22', '84736', 'Administrador'),
+('Julia Araújo', 'juliaaraujo@exemplo.com', '2021-09-30', '23019', 'UsuarioPadrao');
 
 INSERT INTO Autor (Nome, DataNascimento, Biografia)
 VALUES 
-('Jojo Moyes', '04-08-1969', 'Pauline Sara Jo Moyes, mais conhecida como Jojo Moyes é uma jornalista britânica e, desde 2002, romancista. É uma das poucas autoras que já ganharam duas vezes o Prémio Romance do Ano atribuído pela Associação de Romancistas e foi traduzida para vinte e oito idiomas diferentes'),
-('John Grogan', '20-03-1957', 'John Grogan é um jornalista e escritor americano. Ficou famoso mundialmente após escrever o best-seller Marley & Eu, que foi adaptado para o cinema. John Grogan é casado com Jenny, com quem tem três filhos: Patrick, Conor e Colleen.'),
-('John Green', '24-08-1977', 'John Michael Green é um vlogger, empresário, produtor e autor norte-americano de livros para jovens.'),
-('Antoine de Saint-Exupéry', '29-06-1900', 'Antoine de Saint-Exupéry, nascido Antoine-Marie-Roger de Saint-Exupéry, foi um escritor, ilustrador e piloto francês, internacionalmente reconhecido pelo seu livro Le Petit Prince, provavelmente a obra infantil mais celebrada da história.'),
-('José Mauro de Vasconcelos', '26-02-1920', 'José Mauro de Vasconcelos nasceu no Rio de Janeiro em 1920 e faleceu em São Paulo em 1984. Descendente de portugueses, o autor teve vários empregos durante a adolescência, viajando depois por todo o Brasil e por vários países europeus. O seu primeiro grande êxito foi Rosinha, Minha Canoa (1962).'),
-('R. J. Palacio', '13-07-1963', 'R. J. Palacio, cujo nome de nascimento é Raquel Jaramillo, é uma autora e designer gráfica americana, conhecida principalmente pelo romance juvenil Extraordinário (Wonder), de 2012, que virou filme'),
-('Anne Frank', '12-06-1929', 'Anne Frank foi uma menina judia nascida em Frankfurt, Alemanha, em 1929, que se tornou uma das vítimas mais famosas do Holocausto. Fugindo da perseguição nazista, a família de Anne refugiou-se num esconderijo em Amsterdã, onde ela escreveu o seu famoso diário. '),
-('John Boyne', '30-04-1971', 'John Boyne é um escritor irlandês, famoso pelo best-seller The Boy in The Stripped Pyjamas: A Fable. Estudou língua inglesa no Trinity College, e Literatura Criativa na Universidade de East Anglia, onde foi galardoado com o prêmio Curtis Brown.'),
+('Jojo Moyes', '1969-08-04', 'Pauline Sara Jo Moyes, mais conhecida como Jojo Moyes, é uma jornalista britânica e, desde 2002, romancista. É uma das poucas autoras que já ganharam duas vezes o Prémio Romance do Ano atribuído pela Associação de Romancistas e foi traduzida para vinte e oito idiomas diferentes.'),
+('John Grogan', '1957-03-20', 'John Grogan é um jornalista e escritor americano. Ficou famoso mundialmente após escrever o best-seller Marley & Eu, que foi adaptado para o cinema. John Grogan é casado com Jenny, com quem tem três filhos: Patrick, Conor e Colleen.'),
+('John Green', '1977-08-24', 'John Michael Green é um vlogger, empresário, produtor e autor norte-americano de livros para jovens.'),
+('Antoine de Saint-Exupéry', '1900-06-29', 'Antoine de Saint-Exupéry, nascido Antoine-Marie-Roger de Saint-Exupéry, foi um escritor, ilustrador e piloto francês, internacionalmente reconhecido pelo seu livro Le Petit Prince, provavelmente a obra infantil mais celebrada da história.'),
+('José Mauro de Vasconcelos', '1920-02-26', 'José Mauro de Vasconcelos nasceu no Rio de Janeiro em 1920 e faleceu em São Paulo em 1984. Descendente de portugueses, o autor teve vários empregos durante a adolescência, viajando depois por todo o Brasil e por vários países europeus. O seu primeiro grande êxito foi Rosinha, Minha Canoa (1962).'),
+('R. J. Palacio', '1963-07-13', 'R. J. Palacio, cujo nome de nascimento é Raquel Jaramillo, é uma autora e designer gráfica americana, conhecida principalmente pelo romance juvenil Extraordinário (Wonder), de 2012, que virou filme.'),
+('Anne Frank', '1929-06-12', 'Anne Frank foi uma menina judia nascida em Frankfurt, Alemanha, em 1929, que se tornou uma das vítimas mais famosas do Holocausto. Fugindo da perseguição nazista, a família de Anne refugiou-se num esconderijo em Amsterdã, onde ela escreveu o seu famoso diário.'),
+('John Boyne', '1971-04-30', 'John Boyne é um escritor irlandês, famoso pelo best-seller The Boy in The Stripped Pyjamas: A Fable. Estudou língua inglesa no Trinity College, e Literatura Criativa na Universidade de East Anglia, onde foi galardoado com o prêmio Curtis Brown.'),
+('Louisa May Alcott', '1832-11-29', 'Louisa May Alcott foi uma escritora norte-americana, conhecida principalmente por seu romance “Little Women” (Mulherzinhas), publicado em 1868.'),
+('Mark Twain', '1835-11-30', 'Mark Twain, pseudônimo de Samuel Langhorne Clemens, foi um escritor, humorista e palestrante norte-americano, famoso por obras como “As Aventuras de Tom Sawyer” e “As Aventuras de Huckleberry Finn”.');
+
+INSERT INTO Emprestimo (DataEmprestimo, DataLimiteDevolucao, DataDevolucao, id_usuario, id_livro)
+VALUES
+('2024-08-01', 
+'2024-08-15', 
+'2024-08-14',
+ 1, 1),
+ 
+ ('2024-07-01',
+ '2024-07-15',
+ '2024-07-12',
+ 2, 2),
+ 
+ ('2024-04-02',
+ '2024-04-17',
+ '2024-04-15',
+ 3, 3),
+ 
+ ('2024-06-03',
+ '2024-06-18',
+ '2024-06-06',
+ 4, 4),
+ 
+ ('2024-05-15',
+ '2024-05-30',
+ '2024-05-29',
+ 5, 5),
+ 
+ ('2024-03-02',
+ '2024-03-17',
+ '2024-03-13',
+ 6, 6),
+ 
+ ('2024-07-01',
+ '2024-07-16',
+ '2024-07-13',
+ 7, 7),
+ 
+ ('2024-12-01',
+ '2024-12-16',
+ '2024-12-06',
+ 8, 8),
+ 
+ ('2024-08-20',
+ '2024-09-04',
+ '2024-09-02',
+ 9, 9),
+ 
+('2024-09-01',
+ '2024-09-16',
+ '2024-09-14',
+ 10, 10);
+ 
+ INSERT INTO LivroAutor (id_livro, id_autor)
+ VALUES
+ (1, 1),
+ (2, 3),
+ (3, 2),
+ (4, 4),
+ (5, 6),
+ (6, 1),
+ (7, 1),
+ (8, 5),
+ (9, 7),
+ (10, 8);
+
+INSERT INTO LivroCategoria(id_livro, id_categoria)
+VALUES 
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 7),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 5),
+(9, 5),
+(10, 4);
+
+SELECT * FROM Livro;
+SELECT * FROM Autor;
+SELECT * FROM Usuario;
+SELECT * FROM Categoria;
+SELECT * FROM Emprestimo;
+SELECT * FROM LivroCategoria;
+SELECT * FROM LivroAutor;
+
+SHOW tables;
+
+DESCRIBE livro;
