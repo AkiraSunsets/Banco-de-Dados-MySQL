@@ -55,7 +55,15 @@ CREATE TABLE Emprestimo (
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
     FOREIGN KEY (id_livro) REFERENCES Livro(id)
     );
-    
+
+CREATE TABLE UsuarioEmprestimo (
+	id_usuario INT,
+    id_emprestimo INT,
+    PRIMARY KEY (id_usuario, id_emprestimo),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+    FOREIGN KEY (id_emprestimo) REFERENCES Emprestimo(id)
+);
+
 INSERT INTO Livro (TituloLivro, Descricao, ISBN)
 VALUES 
 ('Como eu era antes de você', 
@@ -189,14 +197,15 @@ VALUES
 (9, 5),
 (10, 4);
 
-SELECT * FROM Livro;
-SELECT * FROM Autor;
-SELECT * FROM Usuario;
-SELECT * FROM Categoria;
-SELECT * FROM Emprestimo;
-SELECT * FROM LivroCategoria;
-SELECT * FROM LivroAutor;
-
-SHOW tables;
-
-DESCRIBE livro;
+INSERT INTO UsuarioEmprestimo(id_usuario, id_emprestimo)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4), 
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
